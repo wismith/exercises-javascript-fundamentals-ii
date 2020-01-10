@@ -14,9 +14,8 @@ D   500
 M   1000
 ```
 
-## Contents
+## Contents <!-- omit in TOC -->
 
-- [Contents](#contents)
 - [Iterations](#iterations)
   - [[v1] Additive Roman Numerals](#v1-additive-roman-numerals)
   - [[v2] Subtractive Roman Numerals](#v2-subtractive-roman-numerals)
