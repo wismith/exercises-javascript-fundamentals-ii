@@ -11,6 +11,10 @@ Remember, as a beginner you're probably prone to two things:
 
 Each of these exercises is *something you can already do* by hand. Use that to your advantage. Slow down, step out of the code, and play with simple examples to make your intuition more precise.
 
+### [Format Seconds][dir-format-seconds]
+
+In [formatSeconds][dir-format-seconds], you're asked to turn an integer representing a total number of seconds into a nicely formatted string.
+
 ### [Add Commas][dir-add-commas]
 
 In [addCommas](./exercises/addCommas), you're asked to write a function that formats a number by inserting commas in the appropriate places.
@@ -29,6 +33,19 @@ In [numberToEnglish](./exercises/numberToEnglish), you're asked to write a funct
 
 For example, converting `12345` to `'twelve thousand three hundred forty five'`.
 
+### [Run-Length Encode][dir-run-length-encode]
+
+In [runLengthEncode][dir-run-length-encode], you're asked to implement a simple compression algorithm called *run-length encoding*.
+
+### [Run-Length Decode][dir-run-length-encode]
+
+In [runLengthDecode][dir-run-length-decode], you're asked to write a function that decompresses strings compressed using run-length encoding.
+
+Do [runLengthEncode][dir-run-length-encode] first.
+
+[dir-format-seconds]: ./exercises/formatSeconds
 [dir-add-commas]: ./exercises/addCommas
 [dir-to-roman]: ./exercises/toRoman
 [dir-number-to-english]: ./exercises/numberToEnglish
+[dir-run-length-encode]: ./exercises/runLengthEncode
+[dir-run-length-decode]: ./exercises/runLengthDecode
