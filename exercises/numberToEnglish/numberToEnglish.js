@@ -16,9 +16,15 @@
  */
 function numberToEnglish(num) {
 
-  /// We create a function to describe a number less than 1000
+  /// We create a function to describe a number less than 1000 (to be used to describe the ones, thousands, millions, etc.)
   function lessThan1000(part){
-    const inEnglish = [];
+    // INPUT:  a number with 3 or less digits (num itself or part of a bigger number)
+    // OUTPUT: the English name for the INPUT number
+    
+    // Create empty array to pass words into
+    const inEnglish = []; 
+    
+    // Create arrays of words in English to describe, hundreds, tens, and ones or irregulars
     const hundreds = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
     const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
     const onesInEnglish = [
@@ -26,10 +32,13 @@ function numberToEnglish(num) {
       'five', 'six', 'seven', 'eight', 'nine',
       'ten', 'eleven', 'twelve', 'thirteen', 'fourteen',
       'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+    
+    // Begin pushing words to inEnglish based on value of the parameter passed to the function
     if (part > 99){
       let hundred = hundreds[Number(part.toString()[0])];
       inEnglish.push(hundred, 'hundred');
     }
+
     if (part > 19){
       let tensOnes = Number(part.toString().slice(1));
       if (tensOnes > 19){
@@ -46,13 +55,23 @@ function numberToEnglish(num) {
       let finish = onesInEnglish[part];
       inEnglish.push(finish);
     }
+
+    // Join the array of words into one string, and return the string as the function output
     return inEnglish.join(' ');
   }
 
   /// Here I create a function to split a number into groups of 3 digits or less (ones, thousands, millions, etc.)
   function sliceNumber(num){
+    // INPUT: the original number passed into the numberToEnglish function
+    // OUTPUT: an array of numbers representing the ones, thousands, millions, etc. that make up the INPUT number
+
+    // Create an empty array to pass the ones, thousands, etc.
     let parts = [];
+
+    // Convert the INPUT number to a string
     let numberString = num.toString();
+
+    // Push strings of 3 characters from the INPUT number to the "parts" array, then strings of 2 or 1 character(s) if needed
     while (numberString.length >= 3){
       parts.push(Number(numberString.slice(-3)));
       numberString = numberString.substring(0, numberString.length - 3);
@@ -60,6 +79,8 @@ function numberToEnglish(num) {
     if (numberString.length > 0){
       parts.push(Number(numberString));
     }
+
+    // Return the "parts" array as the OUTPUT of the function
     return parts;
   }
   
@@ -67,18 +88,24 @@ function numberToEnglish(num) {
   /// Here we create a list of names for thousand, million, etc.
   const powersofThousand = ['','thousand', 'million', 'billion', 'trillion'];
 
+  ///  Here we create an empty array to push the words for the final numberToEnglish result
   let descriptionWords= [];
 
+  /// Here, we call our sliceNumber function to separate the ones, thousands, etc.
   let numGroups = sliceNumber(num);
-  /// Creating an iteration to correspond powersofThousand with the appropriate number group in the array
+  
+  /// For original numbers other than 0, Iterating backwards over the powers of 1000 present to build the descriptionWords array in order
   if (num != 0){
     for(let i = numGroups.length - 1; i >= 0; i--){
-
       if (numGroups[i] != 0){
         descriptionWords.push(lessThan1000(numGroups[i]), powersofThousand[i]);
       } 
     }
+
+    /// Join the strings in the descriptionWords array to form our result.
     let result = descriptionWords.join(' ');
+    
+    /// Return the final result of the function
     return result;
   } else {return 'zero'}
 }
