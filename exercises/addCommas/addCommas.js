@@ -15,6 +15,21 @@
 
 function addCommas(num) {
   // This is your job. :)
+  function sliceNumber(num){
+    const parts = [];
+    let numberString = num.toString();
+    while (numberString.length >= 3){
+      parts.push(numberString.slice(-3));
+      numberString = numberString.substring(0, numberString.length -3);
+    }
+    if (numberString.length > 0){
+      parts.push(numberString);
+    }
+    return parts.reverse();
+  }
+
+  return sliceNumber(num).join(',');
+
 }
 
 if (require.main === module) {
@@ -22,6 +37,11 @@ if (require.main === module) {
 
   // Add your own sanity checks here.
   // How else will you be sure your code does what you think it does?
+
+  console.log(addCommas(1000) === '1,000');
+  console.log(addCommas(1200500) === '1,200,500');
+  console.log(addCommas(1000000000000) === '1,000,000,000,000');
 }
+
 
 module.exports = addCommas;
