@@ -14,6 +14,9 @@
  * @returns {string} A string representation of the input number formatted with
  *   commas in the appropriate places.
  */
+
+
+/// This is the MACRO function of the exercise.
 function numberToEnglish(num) {
 
   /// We create a function to describe a number less than 1000 (to be used to describe the ones, thousands, millions, etc.)
@@ -76,6 +79,7 @@ function numberToEnglish(num) {
       parts.push(Number(numberString.slice(-3)));
       numberString = numberString.substring(0, numberString.length - 3);
     }
+    // Push the strings with the remaining numbers not in a string of 3
     if (numberString.length > 0){
       parts.push(Number(numberString));
     }
@@ -85,33 +89,36 @@ function numberToEnglish(num) {
   }
   
 
-  /// Here we create a list of names for thousand, million, etc.
+  /// Here we create a list of names for thousand, million, etc. We could add more names here, and the function would still work.
   const powersofThousand = ['','thousand', 'million', 'billion', 'trillion'];
 
   ///  Here we create an empty array to push the words for the final numberToEnglish result
-  let descriptionWords= [];
+  const descriptionWords= [];
 
   /// Here, we call our sliceNumber function to separate the ones, thousands, etc.
-  let numGroups = sliceNumber(num);
+  const numGroups = sliceNumber(num);
   
   /// For original numbers other than 0, Iterating backwards over the powers of 1000 present to build the descriptionWords array in order
-  if (num != 0){
-    for(let i = numGroups.length - 1; i >= 0; i--){
-      if (numGroups[i] != 0){
-        descriptionWords.push(lessThan1000(numGroups[i]), powersofThousand[i]);
-      } 
-    }
 
-    /// Join the strings in the descriptionWords array to form our result.
-    let result = descriptionWords.join(' ');
-    
-    /// Return the final result of the function
-    return result;
-  } else {return 'zero'}
+  if (num === 0) {
+    return 'zero';
+  }
+
+  for(let i = numGroups.length - 1; i >= 0; i--){
+    if (numGroups[i] != 0){
+      descriptionWords.push(lessThan1000(numGroups[i]), powersofThousand[i]);
+    } 
+  }
+
+  /// Join the strings in the descriptionWords array to form our result.
+  let result = descriptionWords.join(' ');
+  
+  /// Return the final result of the function
+  return result;
 }
 
 
-/// We may or may not need this function below.
+/// We did not use the actual function below, just the array of words for numbers under 20.
 function smallNumberToEnglish(num) {
   let onesInEnglish = [
     'zero', 'one', 'two', 'three', 'four',
