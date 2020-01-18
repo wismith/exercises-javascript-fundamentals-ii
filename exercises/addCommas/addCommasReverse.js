@@ -1,7 +1,7 @@
 function addCommasReverse(num) {
   // 1. convert number into string
   // 2. reverse the string
-  // 3. split it into chunks of 3
+  // 3. split it into an array of chunks of (at most) 3
   // 4. join back together using commas
   // 5. (un-)reverse string
   let str = String(num);
