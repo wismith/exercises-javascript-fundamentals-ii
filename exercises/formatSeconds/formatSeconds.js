@@ -17,10 +17,32 @@
  */
 
 function formatSeconds(num) {
-  // This is your job. :)
+  
+  // Create reference dictionary for lengths of time in seconds
+  const secondsRef = {'w':604800, 'd':86400, 'h':3600, 'm':60, 's':1};
+  
+  // Create empty array to push formatted lengths of time
+  const formattedList = [];
+  
+  // Define a working variable for seconds remaining
+  let secondsRemaining = num;
+  
+  // Use for loop to push formatted lengths of time to the array
+  for (let key of Object.keys(secondsRef)){
+    let amount = Math.floor(secondsRemaining/secondsRef[key]);
+    formattedList.push(amount += key);   
+    secondsRemaining %= secondsRef[key];
+  }
+  
+  // While loop to remove leading elements of the array with '0w', etc.
+  let i = 0;
+  while (formattedList[0][0] === '0' && i < formattedList.length -1){
+    formattedList.shift();
+  }
 
-  // Remember, if the code is stumping you, take a step back and
-  // make sure you can do it by hand.
+  // Join array and return formatted length of time
+  return formattedList.join(' ');
+
 }
 
 if (require.main === module) {
@@ -45,5 +67,6 @@ if (require.main === module) {
   console.log(formatSeconds(3600) === '1h 0m 0s');
   console.log(formatSeconds(3615) === '1h 0m 15s');
 }
+
 
 module.exports = formatSeconds;
