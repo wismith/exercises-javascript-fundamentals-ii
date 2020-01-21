@@ -20,11 +20,24 @@
  * @returns {string} A run-length encoded copy of the input string
  */
 
-function runLengthEncode(num) {
-  // This is your job. :)
-
-  // Remember, if the code is stumping you, take a step back and
-  // make sure you can do it by hand.
+function runLengthEncode(string) {
+  let stringChars = [];
+  for (let char of string){
+    stringChars.push(char);
+  }
+  const encodeList = [];
+  while (stringChars.length){
+    let charCount = 1;
+    let char = stringChars.shift();
+    let i = 1;
+    while (stringChars[0] === char){
+      charCount++;
+      stringChars.shift();
+      i++;
+    }
+    encodeList.push(charCount += char);
+  }
+  return encodeList.join('');
 }
 
 if (require.main === module) {
