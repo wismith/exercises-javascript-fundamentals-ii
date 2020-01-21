@@ -10,11 +10,20 @@
  * @returns {string} The original, uncompressed string
  */
 
-function runLengthDecode(num) {
-  // This is your job. :)
-
-  // Remember, if the code is stumping you, take a step back and
-  // make sure you can do it by hand.
+function runLengthDecode(string) {
+  const codedList = [];
+  for (let char of string){
+    codedList.push(char);
+  }
+  const decodedList = [];
+  while(codedList.length){
+    let number = Number(codedList.shift());
+    let char = codedList.shift();
+    for (let i = 0; i < number; i++){
+      decodedList.push(char);
+    }
+  }
+  return decodedList.join('');
 }
 
 let runLengthEncode = require('../runLengthEncode/runLengthEncode');
