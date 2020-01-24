@@ -12,24 +12,22 @@
  * @returns {string} A string representation of the input number formatted with
  *   commas in the appropriate places.
  */
+function sliceNumber(num){
+  const parts = [];
+  let numberString = num.toString();
+  while (numberString.length >= 3){
+    parts.push(numberString.slice(-3));
+    numberString = numberString.substring(0, numberString.length -3);
+  }
+  if (numberString.length > 0){
+    parts.push(numberString);
+  }
+  return parts.reverse();
+}
+
 
 function addCommas(num) {
-  // This is your job. :)
-  function sliceNumber(num){
-    const parts = [];
-    let numberString = num.toString();
-    while (numberString.length >= 3){
-      parts.push(numberString.slice(-3));
-      numberString = numberString.substring(0, numberString.length -3);
-    }
-    if (numberString.length > 0){
-      parts.push(numberString);
-    }
-    return parts.reverse();
-  }
-
-  return sliceNumber(num).join(',');
-
+  return sliceNumber(num).join(',')
 }
 
 if (require.main === module) {
