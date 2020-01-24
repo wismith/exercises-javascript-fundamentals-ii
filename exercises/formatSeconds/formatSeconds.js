@@ -21,7 +21,7 @@ function formatSeconds(num) {
   const lengthTime ={'w': 24*7*60*60, 'd': 24*60*60, 'h': 60*60,'m':60, 's':1};
   for(let key of Object.keys(lengthTime)){
     let quantity = Math.floor(num/lengthTime[key]);
-    description.push(quantity += key);
+    description.push(quantity + key);
     num = num % lengthTime[key];
   }
   
@@ -29,12 +29,7 @@ function formatSeconds(num) {
     description.shift();
   }
 
-
   return description.join(' ');
-  // This is your job. :)
-
-  // Remember, if the code is stumping you, take a step back and
-  // make sure you can do it by hand.
 }
 
 if (require.main === module) {
