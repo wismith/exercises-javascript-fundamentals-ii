@@ -18,11 +18,12 @@
 
 function formatSeconds(num) {
   const description= [];
-  const lengthTime ={'w': 24*7*60*60, 'd': 24*60*60, 'h': 60*60,'m':60, 's':1};
-  for(let key of Object.keys(lengthTime)){
-    let quantity = Math.floor(num/lengthTime[key]);
-    description.push(quantity + key);
-    num = num % lengthTime[key];  // could also do this with num %= lengthTime[key]
+  const lengthsTime = [24*7*60*60*1,24*60*60*1,60*60*1,60*1,1];
+  const keys = ['w','d','h','m','s'];
+  for(let length of lengthsTime){
+    let quantity = Math.floor(num/length);
+    description.push(quantity + keys[lengthsTime.indexOf(length)]);
+    num = num % length;  // could also do this with num %= lengthTime[key]
   }
   
   while(description[0].startsWith('0') === true && description.length > 1){
