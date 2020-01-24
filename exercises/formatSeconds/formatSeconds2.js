@@ -29,9 +29,9 @@ function formatSeconds(num) {
     let secondsRemaining = num;
 
     // Use a for loop of the lengths of time to process the working number and push descriptors to the array
-    for (let key of Object.keys(secondsRef)){
-        let amount = Math.floor(secondsRemaining/secondsRef[key]);
-        formattedDescriptors.push(amount += key);
+    for (let key of Object.keys(secondsRef)){ 
+        let amount = Math.floor(secondsRemaining/secondsRef[key]);    
+        formattedDescriptors.push(amount += key);       
         secondsRemaining %= secondsRef[key];
     }
 

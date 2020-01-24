@@ -34,7 +34,7 @@ function formatSeconds(num) {
     secondsRemaining %= secondsRef[key];
   }
   
-  // While loop to remove leading elements of the array with '0w', etc.
+  // While loop to remove leading elements of the array with '0w', '0d', etc.
   let i = 0;
   while (formattedList[0][0] === '0' && i < formattedList.length -1){
     formattedList.shift();
