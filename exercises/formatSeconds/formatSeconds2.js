@@ -66,6 +66,8 @@ if (require.main === module) {
 
   console.log(formatSeconds(3600) === '1h 0m 0s');
   console.log(formatSeconds(3615) === '1h 0m 15s');
+
+  console.log(formatSeconds(2580000) === '4w 1d 20h 40m 0s');
 }
 
 
