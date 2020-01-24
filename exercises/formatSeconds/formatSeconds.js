@@ -17,6 +17,13 @@
  */
 
 function formatSeconds(num) {
+  let result = [];
+  for( Math.floor(num / 24*7*60*60)){ 
+    if Math.floor(num / 24*7*60*60) > 0{
+      
+    }
+
+  }
   // This is your job. :)
 
   // Remember, if the code is stumping you, take a step back and
