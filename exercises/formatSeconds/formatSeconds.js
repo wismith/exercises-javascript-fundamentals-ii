@@ -22,7 +22,7 @@ function formatSeconds(num) {
   for(let key of Object.keys(lengthTime)){
     let quantity = Math.floor(num/lengthTime[key]);
     description.push(quantity + key);
-    num = num % lengthTime[key];
+    num = num % lengthTime[key];  // could also do this with num %= lengthTime[key]
   }
   
   while(description[0].startsWith('0') === true && description.length > 1){
