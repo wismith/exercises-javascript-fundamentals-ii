@@ -15,7 +15,34 @@
  * @returns {string} The input integer's Roman numeral representation
  */
 function toRoman(num) {
-  // This is your job. :)
+  let workingNum = num;
+  let thousands = Math.floor(workingNum/1000);
+  workingNum %= 1000;
+  let hundreds = Math.floor(workingNum/100);
+  workingNum %= 100;
+  let tens = Math.floor(workingNum/10);
+  workingNum %= 10;
+  let ones = workingNum;
+
+  const romanArray = [];
+  
+  if (thousands){
+    for (let i = 0; i < thousands; i++)
+    romanArray.push('M');
+  }
+  if (hundreds){
+    if (hundreds === 9){
+      romanArray.push('CM')
+    }
+    
+    for (let i = 0; i < hundreds; i++){
+      romanArray.push('C');
+    }
+  }
+
+
+
+
 }
 
 if (require.main === module) {
