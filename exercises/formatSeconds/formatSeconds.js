@@ -17,10 +17,20 @@
  */
 
 function formatSeconds(num) {
-  // This is your job. :)
+  const description= [];
+  const lengthsTime = [24*7*60*60*1,24*60*60*1,60*60*1,60*1,1];
+  const keys = ['w','d','h','m','s'];
+  for(let length of lengthsTime){
+    let quantity = Math.floor(num/length);
+    description.push(quantity + keys[lengthsTime.indexOf(length)]);
+    num = num % length;  // could also do this with num %= lengthTime[key]
+  }
+  
+  while(description[0].startsWith('0') === true && description.length > 1){
+    description.shift();
+  }
 
-  // Remember, if the code is stumping you, take a step back and
-  // make sure you can do it by hand.
+  return description.join(' ');
 }
 
 if (require.main === module) {
@@ -44,6 +54,9 @@ if (require.main === module) {
 
   console.log(formatSeconds(3600) === '1h 0m 0s');
   console.log(formatSeconds(3615) === '1h 0m 15s');
+
+  console.log(formatSeconds(25000000) === '41w 2d 8h 26m 40s');
 }
+
 
 module.exports = formatSeconds;
