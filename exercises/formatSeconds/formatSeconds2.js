@@ -17,36 +17,36 @@
  */
 
 function formatSeconds(num) {
-  
-  // Create reference dictionary for lengths of time in seconds
-  const secondsRef = {'w':604800, 'd':86400, 'h':3600, 'm':60, 's':1};
-  
-  // Create empty array to push formatted lengths of time
-  const formattedList = [];
-  
-  // Define a working variable for seconds remaining
-  let secondsRemaining = num;
-  
-  // Use for loop to push formatted lengths of time to the array
-  for (let key of Object.keys(secondsRef)){
-    let amount = Math.floor(secondsRemaining/secondsRef[key]);
-    formattedList.push(amount += key);   
-    secondsRemaining %= secondsRef[key];
-  }
-  
-  // While loop to remove leading elements of the array with '0w', '0d', etc.
-  let i = 0;
-  while (formattedList[0][0] === '0' && i < formattedList.length -1){
-    formattedList.shift();
-  }
+    // Write function here!
 
-  // Join array and return formatted length of time
-  return formattedList.join(' ');
+    // Create reference dictionary for lengths of time
+    const secondsRef = {'w':604800,'d':86400,'h':3600,'m':60,'s':1};
+
+    // Create empty array to push list of descriptors
+    const formattedDescriptors = [];
+
+    // Define a working number for number of seconds remaining
+    let secondsRemaining = num;
+
+    // Use a for loop of the lengths of time to process the working number and push descriptors to the array
+    for (let key of Object.keys(secondsRef)){ 
+        let amount = Math.floor(secondsRemaining/secondsRef[key]);    
+        formattedDescriptors.push(amount += key);       
+        secondsRemaining %= secondsRef[key];
+    }
+
+    // Use a while loop to remove any leading descriptors with a value of 0
+    while (formattedDescriptors[0].startsWith('0') && formattedDescriptors.length > 1){
+        formattedDescriptors.shift();
+    }
+
+    // Join the array of descriptors with spaces and return the resulting string
+    return formattedDescriptors.join(' ');
 
 }
 
 if (require.main === module) {
-  console.log('Running sanity checks for formatSeconds:');
+  console.log('Running sanity checks for formatSeconds2:');
 
   /*
   Add your own test cases here! These four aren't enough.
@@ -66,6 +66,8 @@ if (require.main === module) {
 
   console.log(formatSeconds(3600) === '1h 0m 0s');
   console.log(formatSeconds(3615) === '1h 0m 15s');
+
+  console.log(formatSeconds(2580000) === '4w 1d 20h 40m 0s');
 }
 
 
