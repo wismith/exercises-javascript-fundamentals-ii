@@ -15,13 +15,23 @@ function toRoman3(num) {
     [1,'I'],
   ];
   let workingNum = num;
-  let inRoman = ''
+  let inRoman = '';
+
+  
+  for (let [val,roman] of romanDict) {
+    [workingNum,inRoman] = [workingNum % val, inRoman + roman.repeat(workingNum/val)];
+  }
+  
+  // romanDict.reduce(([workingNum, inRoman], [val, roman]) => [workingNum % val, inRoman + roman.repeat(num / val)], [workingNum, '']);
+
+  /*
   for (let val of romanDict) {
     for (let i = 0; i < Math.floor(workingNum/val[0]); i++) {
       inRoman += val[1];
     }
     workingNum %= val[0];
   }
+  */
   return inRoman;
 }
 
