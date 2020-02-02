@@ -19,7 +19,13 @@
 function formatSeconds(num) {
   
   // Create reference dictionary for lengths of time in seconds
-  const secondsRef = {'w':604800, 'd':86400, 'h':3600, 'm':60, 's':1};
+  let SECONDS = 1;
+  let SECONDS_PER_MINUTE = SECONDS * 60;
+  let SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60;
+  let SECONDS_PER_DAY = SECONDS_PER_HOUR * 24;
+  let SECONDS_PER_WEEK = SECONDS_PER_DAY * 7;
+  
+  const secondsRef = {'w':SECONDS_PER_WEEK, 'd':SECONDS_PER_DAY, 'h':SECONDS_PER_HOUR, 'm':SECONDS_PER_MINUTE, 's':SECONDS};
   
   // Create empty array to push formatted lengths of time
   const formattedList = [];
@@ -30,14 +36,10 @@ function formatSeconds(num) {
   // Use for loop to push formatted lengths of time to the array
   for (let key of Object.keys(secondsRef)){
     let amount = Math.floor(secondsRemaining/secondsRef[key]);
-    formattedList.push(amount += key);   
-    secondsRemaining %= secondsRef[key];
-  }
-  
-  // While loop to remove leading elements of the array with '0w', etc.
-  let i = 0;
-  while (formattedList[0][0] === '0' && i < formattedList.length -1){
-    formattedList.shift();
+    if (amount > 0 || formattedList.length > 0 || key === 's') {
+      formattedList.push(String(amount) + key);   
+      secondsRemaining %= secondsRef[key];
+    }
   }
 
   // Join array and return formatted length of time
