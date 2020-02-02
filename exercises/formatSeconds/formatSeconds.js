@@ -17,10 +17,34 @@
  */
 
 function formatSeconds(num) {
-  // This is your job. :)
+  
+  // Create reference dictionary for lengths of time in seconds
+  let SECONDS = 1;
+  let SECONDS_PER_MINUTE = SECONDS * 60;
+  let SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60;
+  let SECONDS_PER_DAY = SECONDS_PER_HOUR * 24;
+  let SECONDS_PER_WEEK = SECONDS_PER_DAY * 7;
+  
+  const secondsRef = {'w':SECONDS_PER_WEEK, 'd':SECONDS_PER_DAY, 'h':SECONDS_PER_HOUR, 'm':SECONDS_PER_MINUTE, 's':SECONDS};
+  
+  // Create empty array to push formatted lengths of time
+  const formattedList = [];
+  
+  // Define a working variable for seconds remaining
+  let secondsRemaining = num;
+  
+  // Use for loop to push formatted lengths of time to the array
+  for (let key of Object.keys(secondsRef)){
+    let amount = Math.floor(secondsRemaining/secondsRef[key]);
+    if (amount > 0 || formattedList.length > 0 || key === 's') {
+      formattedList.push(String(amount) + key);   
+      secondsRemaining %= secondsRef[key];
+    }
+  }
 
-  // Remember, if the code is stumping you, take a step back and
-  // make sure you can do it by hand.
+  // Join array and return formatted length of time
+  return formattedList.join(' ');
+
 }
 
 if (require.main === module) {
@@ -45,5 +69,6 @@ if (require.main === module) {
   console.log(formatSeconds(3600) === '1h 0m 0s');
   console.log(formatSeconds(3615) === '1h 0m 15s');
 }
+
 
 module.exports = formatSeconds;
