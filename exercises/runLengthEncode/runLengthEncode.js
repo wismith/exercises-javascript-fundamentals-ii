@@ -21,10 +21,8 @@
  */
 
 function runLengthEncode(string) {
-  let stringChars = [];
-  for (let char of string){
-    stringChars.push(char);
-  }
+  let stringChars = string.split('');
+  
   const encodeList = [];
   while (stringChars.length){
     let charCount = 1;
@@ -40,6 +38,47 @@ function runLengthEncode(string) {
   return encodeList.join('');
 }
 
+function timeRunLengthEncode(string) {
+  let before = Date.now();
+  runLengthEncode(string);
+  let after = Date.now();
+  return after - before;
+}
+
+function runLengthEncode2(string) {
+  let count = 1;
+  let prev = string[0];
+  let result = '';
+
+  for (let i = 1; i < string.length; i += 1) {
+    if (string[i] !== prev) {
+      result += String(count) + prev;
+
+      prev = string[i];
+      count = 1;
+    } else {
+      count += 1;
+    }
+  }
+
+  result += String(count) + prev;
+
+  return result;
+}
+
+function timeRunLengthEncode2(string) {
+  let before = Date.now();
+  runLengthEncode2(string);
+  let after = Date.now();
+  return after - before;
+}
+
+let strings = ['A','AB','AABBCC','ABBCCDDF','Mississippi','WWWWWWAAAAAAWWWWWWAAAAAABBBBBB'];
+for (let string of strings) {
+  console.log('%d\t%f\t%f', string, timeRunLengthEncode(string), timeRunLengthEncode2(string));
+}
+
+
 if (require.main === module) {
   console.log('Running sanity checks for runLengthEncode:');
 
@@ -47,6 +86,8 @@ if (require.main === module) {
   console.log(runLengthEncode('A') === '1A');
   console.log(runLengthEncode('AB') === '1A1B');
   console.log(runLengthEncode('Mississippi') === '1M1i2s1i2s1i2p1i');
+
+
 }
 
 module.exports = runLengthEncode;
